@@ -1,13 +1,18 @@
 package com.example.weatherapp.data
 
 import com.example.weatherapp.BuildConfig
+import com.example.weatherapp.data.dto.forecastModel.ForecastResponse
+import com.example.weatherapp.data.dto.getCurrentWeather.WeatherResponse
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -30,6 +35,41 @@ class WeatherRepository {
     }
 
     private val apiKey = BuildConfig.MY_API_KEY
+    private val baseUrl = "https://api.openweathermap.org/data/2.5"
+
+    suspend fun getWeatherDetails(city: String): Result<WeatherResponse>{
+
+        return try {
+            val response = client.get("$baseUrl/weather") {
+                parameter("q",city)
+                parameter("appid",apiKey)
+                parameter("units","metric")
+            }
+            Result.success(response.body())
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+
+    }
+
+    suspend fun getForecast(city: String): Result<ForecastResponse>{
+
+        return try {
+            val response = client.get("$baseUrl/forecast") {
+                parameter("q",city)
+                parameter("appid",apiKey)
+                parameter("units","metric")
+            }
+            Result.success(response.body())
+        }catch (e: Exception){
+            Result.failure(e)
+        }
+
+    }
+
+    fun close(){
+        client.close()
+    }
 
 
 }

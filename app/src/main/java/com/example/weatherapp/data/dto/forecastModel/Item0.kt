@@ -1,19 +1,15 @@
-package com.example.weatherapp.data.weatherModel
+package com.example.weatherapp.data.dto.forecastModel
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WeatherResponse(
-    val base: String,
+data class Item0(
     val clouds: Clouds,
-    val cod: Int,
-    val coord: Coord,
     val dt: Int,
-    val id: Int,
+    val dt_txt: String,
     val main: Main,
-    val name: String,
+    val pop: Int,
     val sys: Sys,
-    val timezone: Int,
     val visibility: Int,
     val weather: List<Weather>,
     val wind: Wind
