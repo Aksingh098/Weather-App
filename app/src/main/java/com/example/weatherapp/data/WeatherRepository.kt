@@ -2,7 +2,7 @@ package com.example.weatherapp.data
 
 import com.example.weatherapp.BuildConfig
 import com.example.weatherapp.data.dto.forecastModel.ForecastResponse
-import com.example.weatherapp.data.dto.getCurrentWeather.WeatherResponse
+import com.example.weatherapp.data.dto.weatherModel.WeatherResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
