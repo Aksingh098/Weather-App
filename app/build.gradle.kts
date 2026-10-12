@@ -73,6 +73,9 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:3.6.0")
     implementation("io.ktor:ktor-client-logging:3.6.0")
 
+    //Icons
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
