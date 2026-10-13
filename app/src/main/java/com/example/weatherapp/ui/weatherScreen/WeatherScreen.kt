@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.ui.weatherScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,14 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.weatherapp.ui.WeatherUiState
+import com.example.weatherapp.ui.WeatherViewModel
 
 @Composable
 fun WeatherScreen(
      modifier: Modifier =  Modifier,
      viewModel: WeatherViewModel = WeatherViewModel() // for just now not a good practice as this function recomposes
 ){
-    val uiState =  viewModel.uiState.collectAsState()
-    val searchedQuery = viewModel.searchedQuery.collectAsState()
+    val uiState by  viewModel.uiState.collectAsState()
+    val searchedQuery by viewModel.searchedQuery.collectAsState()
     val showSearchDialog by remember {mutableStateOf(false)}
 
     Box(
@@ -38,6 +40,7 @@ fun WeatherScreen(
 
     when(val state = uiState){
         is WeatherUiState.Loading ->{
+            LoadingScreen(modifier = Modifier)
 
         }
         is WeatherUiState.Success ->{
