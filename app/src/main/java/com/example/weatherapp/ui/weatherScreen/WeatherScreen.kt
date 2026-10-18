@@ -8,24 +8,27 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.ui.WeatherUiState
 import com.example.weatherapp.ui.WeatherViewModel
+import com.example.weatherapp.ui.weatherScreen.components.LoadingScreen
 
 @Composable
 fun WeatherScreen(
-     modifier: Modifier =  Modifier,
-     viewModel: WeatherViewModel = WeatherViewModel() // for just now not a good practice as this function recomposes
-){
-    val uiState by  viewModel.uiState.collectAsState()
+    modifier: Modifier = Modifier,
+    viewModel: WeatherViewModel = WeatherViewModel() // for just now not a good practice as this function recomposes
+) {
+    val uiState by viewModel.uiState.collectAsState()
     val searchedQuery by viewModel.searchedQuery.collectAsState()
-    val showSearchDialog by remember {mutableStateOf(false)}
+    var showSearchDialog by remember { mutableStateOf(false) }
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
             .background(
                 brush = Brush.verticalGradient(
                     listOf(
@@ -36,27 +39,28 @@ fun WeatherScreen(
                     )
                 )
             )
-    )
+    ) {
+        when (val state = uiState) {
+            is WeatherUiState.Loading -> {
+                LoadingScreen(modifier = Modifier)
 
-    when(val state = uiState){
-        is WeatherUiState.Loading ->{
-            LoadingScreen(modifier = Modifier)
+            }
 
-        }
-        is WeatherUiState.Success ->{
+            is WeatherUiState.Success -> {
 
-        }
-        is WeatherUiState.Error ->{
+            }
 
+            is WeatherUiState.Error -> {
+
+            }
         }
     }
-
 
 
 }
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun WeatheScreenPreview(){
+fun WeatheScreenPreview() {
     WeatherScreen()
 }

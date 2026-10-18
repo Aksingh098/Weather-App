@@ -2,6 +2,8 @@ package com.example.weatherapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val glassCard = Color.White.copy(0.25f)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
