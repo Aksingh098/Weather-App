@@ -72,6 +72,12 @@ fun WeatherContent(
             }
         }
 
+        Text(
+            text = getDate(),
+            style = MaterialTheme.typography.headlineSmall,
+            color = Color.White
+        )
+
         Spacer(Modifier.height(12.dp))
 
         WeatherCard(
