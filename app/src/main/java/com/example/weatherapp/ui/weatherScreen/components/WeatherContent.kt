@@ -93,6 +93,10 @@ fun WeatherContent(
             pressure = weather.main.pressure
         )
 
+        Forecast(
+            forecastList = forecast
+        )
+
 
     }
 

@@ -15,7 +15,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.ui.WeatherUiState
 import com.example.weatherapp.ui.WeatherViewModel
+import com.example.weatherapp.ui.weatherScreen.components.ErrorScreen
 import com.example.weatherapp.ui.weatherScreen.components.LoadingScreen
+import com.example.weatherapp.ui.weatherScreen.components.WeatherContent
 
 @Composable
 fun WeatherScreen(
@@ -25,6 +27,8 @@ fun WeatherScreen(
     val uiState by viewModel.uiState.collectAsState()
     val searchedQuery by viewModel.searchedQuery.collectAsState()
     var showSearchDialog by remember { mutableStateOf(false) }
+
+
 
     Box(
         modifier = modifier
@@ -40,17 +44,26 @@ fun WeatherScreen(
                 )
             )
     ) {
-        when (val state = uiState) {
+
+        when (uiState) {
             is WeatherUiState.Loading -> {
                 LoadingScreen(modifier = Modifier)
 
             }
 
             is WeatherUiState.Success -> {
+                WeatherContent(
+                    weather = (uiState as WeatherUiState.Success).currentWeather,
+                    forecast = (uiState as WeatherUiState.Success).weatherForecast,
+                    onSearchClick = { TODO() }
+                )
 
             }
 
             is WeatherUiState.Error -> {
+                ErrorScreen(
+                    errorMessage = (uiState as WeatherUiState.Error).errorMessage
+                )
 
             }
         }

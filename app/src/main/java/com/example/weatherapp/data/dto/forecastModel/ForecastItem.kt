@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
     data class ForecastItem(
         val clouds: Clouds,
-        val dt: Int,
+        val dt: Long,
         val dt_txt: String,
         val main: Main,
         val pop: Int,

@@ -11,16 +11,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.weatherapp.R
 
 @Composable
-fun LoadingScreen(modifier: Modifier){
+fun LoadingScreen(modifier: Modifier) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
-    ){
+    ) {
 
         Column(
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -34,7 +36,7 @@ fun LoadingScreen(modifier: Modifier){
 
             )
             Text(
-                "Loading Weather Data...",
+                stringResource(R.string.loading_weather_data),
                 color = Color.White,
                 fontWeight = FontWeight.SemiBold
 
@@ -50,6 +52,6 @@ fun LoadingScreen(modifier: Modifier){
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun LoadingScreenPreview(){
+fun LoadingScreenPreview() {
     LoadingScreen(modifier = Modifier)
 }

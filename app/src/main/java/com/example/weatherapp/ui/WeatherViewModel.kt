@@ -17,6 +17,10 @@ class WeatherViewModel(private val repository: WeatherRepository = WeatherReposi
     private val _searchedQuery = MutableStateFlow("Delhi")
     val searchedQuery = _searchedQuery.asStateFlow()
 
+    init {
+        loadWeather(_searchedQuery.value)
+    }
+
     fun loadWeather(city: String){
         viewModelScope.launch {
 
