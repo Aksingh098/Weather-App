@@ -50,7 +50,8 @@ fun WeatherContent(
         ) {
             Column() {
                 Text(
-                    text = weather.name, style = MaterialTheme.typography.headlineMedium
+                    text = weather.name, style = MaterialTheme.typography.headlineMedium,
+                    color = Color(0xFF173F70)
                 )
                 Text(
                     text = weather.sys.country,

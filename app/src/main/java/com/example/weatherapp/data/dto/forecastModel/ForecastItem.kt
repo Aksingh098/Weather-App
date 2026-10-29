@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
         val dt: Long,
         val dt_txt: String,
         val main: Main,
-        val pop: Int,
+        val pop: Double = 0.0,
         val sys: Sys,
         val visibility: Int,
         val weather: List<Weather>,

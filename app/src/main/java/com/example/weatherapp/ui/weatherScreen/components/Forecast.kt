@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,7 +42,7 @@ fun Forecast(
                 ForecastCard(
                     time = getTimeFromTimestamp(forecast.dt),
                     icon = getWeatherEmoji(forecast.weather.firstOrNull()?.main ?: "Clear"),
-                    temp = "${forecast.main.temp.roundToInt()}"
+                    temp = "${forecast.main.temp.roundToInt()}°C"
                 )
             }
         }
@@ -57,9 +58,12 @@ fun getTimeFromTimestamp(timeStamp: Long): String {
 @Composable
 private fun ForecastCard(time: String, icon: String, temp: String) {
     Card(
-        modifier = Modifier
-            .width(72.dp)
-            .height(120.dp)
+        modifier = Modifier.width(72.dp)
+            .height(120.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White.copy(0.25f),
+            contentColor = Color(0xFF173F70)
+        )
     ) {
         Column(
             modifier = Modifier
